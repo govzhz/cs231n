@@ -1,4 +1,4 @@
-# cs231n
+# CS231n
 *The implementation is not completely based on CS231n assignment, In particular, I reconstruct the code according to my own ideas.*
 
  - **The dataset we used is [Cifar10 dataset python version](http://www.cs.toronto.edu/~kriz/cifar.html).**
