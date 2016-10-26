@@ -1,6 +1,6 @@
 import numpy as np
-from SVM_Cifar10.data_utils import load_CIFAR10
-from SVM_Cifar10.svm import SVM
+from data_utils import load_CIFAR10
+from svm import SVM
 import matplotlib.pyplot as plt
 
 
