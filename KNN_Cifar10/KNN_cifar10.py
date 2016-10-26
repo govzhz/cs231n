@@ -1,5 +1,5 @@
-from KNN_Cifar10.k_nearest_neighbor import KNearestNeighbor
-from KNN_Cifar10.data_utils import load_CIFAR10
+from k_nearest_neighbor import KNearestNeighbor
+from data_utils import load_CIFAR10
 import matplotlib.pyplot as plt
 import numpy as np
 
