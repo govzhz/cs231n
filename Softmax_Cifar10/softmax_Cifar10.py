@@ -1,6 +1,6 @@
 import numpy as np
-from Softmax_Cifar10.data_utils import load_CIFAR10
-from Softmax_Cifar10.softmax import Softmax
+from data_utils import load_CIFAR10
+from softmax import Softmax
 import matplotlib.pyplot as plt
 
 
