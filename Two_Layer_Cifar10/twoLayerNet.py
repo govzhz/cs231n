@@ -1,7 +1,7 @@
 import numpy as np
 
 class TwoLayerNet(object):
-    def __init__(self, input_size, hidden_size, num_classes, std):
+    def __init__(self, input_size, hidden_size, num_classes, std=1e-4):
         """
         Weights are initialized to small random values and biases are initialized to zero.
         """
@@ -62,12 +62,16 @@ class TwoLayerNet(object):
 
         return loss, grads
 
-    def train(self, X, y, X_val, y_val, reg, learning_rate, learning_rate_decay, num_iters, batch_size, iterations_per_epoch, verbose):
+    def train(self, X, y, X_val, y_val, reg, learning_rate, 
+                learning_rate_decay, iterations_per_lr_annealing, 
+                num_epoches, batch_size, verbose):
         num_examples = X.shape[0]
         loss_history = []
         train_acc_history = []
         val_acc_history = []
-        
+        iterations_per_epoch = max(num_examples / batch_size, 1)
+        num_iters = int(num_epoches * iterations_per_epoch)
+
         for i in range(num_iters):
             # mini batch
             sample_index = np.random.choice(num_examples, batch_size, replace=True)
@@ -89,7 +93,8 @@ class TwoLayerNet(object):
             if i % iterations_per_epoch == 0:
                 train_acc_history.append(np.mean(self.predict(X_batch) == y_batch))
                 val_acc_history.append(np.mean(self.predict(X_val) == y_val))
-                
+            
+            if i % iterations_per_lr_annealing == 0:
                 # Decay learning rate
                 learning_rate *= learning_rate_decay
 
