@@ -59,6 +59,9 @@ class Solver(object):
             y = y[mask]
 
         num_batchsize = int(N / self.batch_size)
+		if N % self.batch_size != 0:
+            num_batchsize += 1
+			
         y_pred = []
         for i in range(num_batchsize):
             start = int(i * self.batch_size)

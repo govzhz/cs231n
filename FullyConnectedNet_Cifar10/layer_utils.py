@@ -55,7 +55,7 @@ def affine_backward(dout, cache):
 
 def relu_forward(x):
     out = np.maximum(0, x)
-    cache = out
+    cache = x
     return out, cache
 
 
