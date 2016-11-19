@@ -23,10 +23,9 @@ class KNearestNeighbor(object):
         dists = np.zeros((X_test.shape[0], self.X_train.shape[0]))
 
         value_2xy = np.multiply(X_test.dot(self.X_train.T), -2)
-        value_x2 = np.sum(np.square(X_test), axis=1)
+        value_x2 = np.sum(np.square(X_test), axis=1, keepdims=True)
         value_y2 = np.sum(np.square(self.X_train), axis=1)
-        # 注意这里需要将矩阵转回数组
-        dists = np.sqrt(value_2xy + np.matrix(value_x2).T + np.matrix(value_y2)).getA()
+        dists = value_2xy + value_x2 + value_y2
         return dists
 
     def predict_label(self, dists, k):
