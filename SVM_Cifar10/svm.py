@@ -68,7 +68,8 @@ class SVM(object):
         num_train = X.shape[0]
 
         scores = X.dot(self.W.T)  # N * C
-        margins = (scores - np.matrix(scores[range(num_train), y]).T + delta).getA()
+        correct_class_scores = scores[range(num_train), y]
+        margins = scores - correct_class_scores[:, np.newaxis] + delta
         margins = np.maximum(0, margins)
         # do not ignore it, because 'y - y + delta' > 0, we should reset it to zeros
         margins[range(num_train), y] = 0
